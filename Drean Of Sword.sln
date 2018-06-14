@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drean Of Sword", "Assembly-CSharp.csproj", "{BFC40401-ED03-F6BC-1839-56730B9B4B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drean Of Sword", "Assembly-CSharp-Editor.csproj", "{B5C0DC5A-B784-7E46-B73D-0ECB642958AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFC40401-ED03-F6BC-1839-56730B9B4B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC40401-ED03-F6BC-1839-56730B9B4B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC40401-ED03-F6BC-1839-56730B9B4B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC40401-ED03-F6BC-1839-56730B9B4B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5C0DC5A-B784-7E46-B73D-0ECB642958AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5C0DC5A-B784-7E46-B73D-0ECB642958AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5C0DC5A-B784-7E46-B73D-0ECB642958AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5C0DC5A-B784-7E46-B73D-0ECB642958AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
