@@ -11,9 +11,6 @@ public class PlayerEntity : GravityEntity {
     public int moveSpeed;
     public int rotateSpeed;
 
-    float _vertSpeed;
-    Vector3 movement;
-
     Animator ani;
 
     Energy energy;
