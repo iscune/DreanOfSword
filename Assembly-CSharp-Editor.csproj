@@ -440,11 +440,11 @@
     <None Include="Assets\VoxelImporter\Scripts\Editor\Shader\Unlit-Color.shader" />
     <None Include="Assets\VoxelImporter\Scripts\Editor\Shader\VertexColor.shader" />
     <None Include="Assets\VoxelImporter\Scripts\Editor\Shader\VertexColor-Transparent-Zwrite.shader" />
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/GameMaker/Unity/Project/Drean Of Sword/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/GameMaker/Unity/Project/Drean Of Sword/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>D:/GameMaker/Unity/Project/Drean Of Sword/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/GameMaker/Games/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

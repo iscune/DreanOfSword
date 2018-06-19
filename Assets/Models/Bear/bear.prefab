@@ -557,7 +557,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -3.500001
+    e13: -3.5
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -573,7 +573,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -9.000001
+    e13: -9
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -589,7 +589,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -11.000001
+    e13: -11
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -605,7 +605,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -9.500001
+    e13: -9.5
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -621,7 +621,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -9.500001
+    e13: -9.5
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -669,7 +669,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -3.500001
+    e13: -3.5
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -685,7 +685,7 @@ Mesh:
     e10: 0
     e11: 1
     e12: 0
-    e13: -7.500001
+    e13: -7.5
     e20: 0
     e21: 0
     e22: 1.0000002
@@ -17260,6 +17260,7 @@ MonoBehaviour:
   hips: {fileID: 1788430811426452}
   moveSpeed: 15
   rotateSpeed: 20
+  energyBar: {fileID: 0}
 --- !u!114 &114345913576622482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -22621,7 +22622,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 9e07358b4b2a08b409696e0e875f791f, type: 2}
+  - {fileID: 21314704214161828}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

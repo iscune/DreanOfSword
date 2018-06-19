@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEntity : MonoBehaviour {
+public class PlayerEntity : GravityEntity {
 
     public GameObject sword;
     public GameObject hand;
@@ -11,39 +11,76 @@ public class PlayerEntity : MonoBehaviour {
     public int moveSpeed;
     public int rotateSpeed;
 
-    CharacterController cc;
     float _vertSpeed;
     Vector3 movement;
 
     Animator ani;
+
+    Energy energy;
+
+    public GameObject energyBar;
 
     enum SwordState {
         InHand = 0,
         InBody = 1,
     }
 
-    SwordState swordState = SwordState.InBody;
-    // Use this for initialization
-    void Start() {
-        cc = GetComponent<CharacterController>();
-        ani = GetComponent<Animator>();
+    enum WalkState {
+        stand = 0,
+        walk = 1,
+        run = 2,
     }
 
-    private void FixedUpdate()
+
+    SwordState swordState = SwordState.InBody;
+
+    WalkState walkState = WalkState.stand;
+
+    float speedRotio = 0;
+
+    // Use this for initialization
+    protected override void Start() {
+        base.Start();
+
+        ani = GetComponent<Animator>();
+
+        energy = new Energy(energyBar);
+        StartCoroutine(EnergyAutoAdd());
+        StartCoroutine(SpeedChange());
+    }
+
+    IEnumerator SpeedChange()
     {
-        if (!cc.isGrounded)
+        while(true)
         {
-            _vertSpeed += Physics.gravity.y * 5 * Time.deltaTime;//不在地面上 
-            if (_vertSpeed < -10.0f)
+            if (walkState == WalkState.walk)
             {
-                _vertSpeed = -10.0f;
+                speedRotio = speedRotio + (float)0.2;
             }
 
-            movement.y = _vertSpeed;
-            movement *= Time.deltaTime;
-            cc.Move(movement);
-            return;
+            if (speedRotio > 1)
+            {
+                walkState = WalkState.run;
+                speedRotio = 1;
+            }
+
+            ani.SetFloat("runSpeed", speedRotio);
+            yield return new WaitForSeconds(1);
         }
+    }
+
+    IEnumerator EnergyAutoAdd()
+    {
+        while (true)
+        {
+            energy.Value = 1;
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
     }
 
     // Update is called once per frameh
@@ -57,6 +94,7 @@ public class PlayerEntity : MonoBehaviour {
             if (swordState == SwordState.InBody)
             {
                 ani.Play("PickSword", 1);
+                ani.SetFloat("reverse", 1);
             }
             else
             {
@@ -66,7 +104,18 @@ public class PlayerEntity : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            
+            AnimatorStateInfo stateInfo = ani.GetCurrentAnimatorStateInfo(1);
+           if(swordState == SwordState.InHand && stateInfo.IsName("handRun"))
+           {
+
+                ani.Play("PickSword", 1,1);
+                ani.SetFloat("reverse", -1);
+           }   
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && swordState == SwordState.InHand)
+        {
+            ani.Play("rotateAttack", 1);
         }
 
         float h = Input.GetAxis("Horizontal");
@@ -78,7 +127,18 @@ public class PlayerEntity : MonoBehaviour {
             Vector3 targetpos = new Vector3(-h, 0, -v);
             //print (targetpos);  
             transform.LookAt(targetpos + transform.position);
-            cc.SimpleMove(transform.forward * moveSpeed);
+            cc.SimpleMove(transform.forward * moveSpeed * speedRotio);
+
+            if (walkState != WalkState.run)
+            {
+                walkState = WalkState.walk;
+            }
+        }
+        else
+        {
+            speedRotio = (float)0.1;
+            walkState = WalkState.stand;
+            ani.SetFloat("runSpeed", speedRotio);
         }
     }
 
@@ -93,7 +153,7 @@ public class PlayerEntity : MonoBehaviour {
             sword.transform.localPosition = new Vector3((float)5.95, (float)1.49, (float)2.12);
 
             swordState = SwordState.InHand;
-         //  Debug.Log(sword.transform.position);
+            //  Debug.Log(sword.transform.position);
         }
     }
 
@@ -108,6 +168,8 @@ public class PlayerEntity : MonoBehaviour {
             sword.transform.localPosition = new Vector3((float)-5.5,(float)4, (float)2);
 
             swordState = SwordState.InBody;
+
+           // ani.SetFloat("reverse", 1);
             //   Debug.Log(sword.transform.position);
         }
     }
