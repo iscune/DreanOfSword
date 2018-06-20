@@ -71,7 +71,7 @@ public class PlayerEntity : GravityEntity {
         while (true)
         {
             energy.Value = 1;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds((float)0.1);
         }
     }
 
@@ -86,22 +86,25 @@ public class PlayerEntity : GravityEntity {
         {
             return;
         }
-        if (Input.GetMouseButtonDown(0))
+
+        AnimatorStateInfo stateInfo = ani.GetCurrentAnimatorStateInfo(1);
+        
+        if (Input.GetMouseButtonDown(0) && stateInfo.IsName("handRun"))
         {
             if (swordState == SwordState.InBody)
             {
-                ani.Play("PickSword", 1);
+                ani.SetInteger("AttackMode", 2);
                 ani.SetFloat("reverse", 1);
             }
             else
             {
+                energy.Value = -10;
                 ani.SetBool("isAttack", true);
             }
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            AnimatorStateInfo stateInfo = ani.GetCurrentAnimatorStateInfo(1);
            if(swordState == SwordState.InHand && stateInfo.IsName("handRun"))
            {
 
@@ -112,7 +115,7 @@ public class PlayerEntity : GravityEntity {
 
         if (Input.GetKeyDown(KeyCode.Space) && swordState == SwordState.InHand)
         {
-            ani.Play("rotateAttack", 1);
+            ani.SetInteger("AttackMode", 1);
         }
 
         float h = Input.GetAxis("Horizontal");
@@ -147,7 +150,7 @@ public class PlayerEntity : GravityEntity {
 
             sword.transform.localRotation = new Quaternion((float)10.6,(float)-25.822, (float)20.285, (float)1.0);
        
-            sword.transform.localPosition = new Vector3((float)5.95, (float)1.49, (float)2.12);
+            sword.transform.localPosition = new Vector3((float)0.595, (float)0.249, (float)0.212);
 
             swordState = SwordState.InHand;
             //  Debug.Log(sword.transform.position);
@@ -162,7 +165,7 @@ public class PlayerEntity : GravityEntity {
 
             sword.transform.localRotation = new Quaternion();
 
-            sword.transform.localPosition = new Vector3((float)-5.5,(float)4, (float)2);
+            sword.transform.localPosition = new Vector3((float)-1.25,(float)-0.75, (float)-8.7);
 
             swordState = SwordState.InBody;
 
@@ -174,5 +177,6 @@ public class PlayerEntity : GravityEntity {
     public void EndAttack()
     {
         ani.SetBool("isAttack", false);
+        ani.SetInteger("AttackMode", 0);
     }
 }

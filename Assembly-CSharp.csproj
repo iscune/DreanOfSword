@@ -62,8 +62,10 @@
     <Compile Include="Assets\Scripts\EdgeDetectNormalsAndDepth.cs" />
     <Compile Include="Assets\Scripts\EnemyEntity.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
+    <Compile Include="Assets\Scripts\Factory.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GravityEntity.cs" />
+    <Compile Include="Assets\Scripts\HpBarFactory.cs" />
     <Compile Include="Assets\Scripts\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\PostEffectsBase.cs" />
     <Compile Include="Assets\VoxelImporter\Examples\Assets\CreateCubes.cs" />
@@ -104,6 +106,7 @@
     <None Include="Assets\VoxelImporter\ReadMe_en.txt" />
     <None Include="Assets\VoxelImporter\Shader\Explosion\VoxelExplosion-Opaque.shader" />
     <None Include="Assets\Shaders\ToonShading.shader" />
+    <None Include="Assets\Shaders\MirrorShader.shader" />
     <None Include="Assets\Shaders\Hatching.shader" />
     <None Include="Assets\VoxelImporter\ReadMe_jp.txt" />
     <Reference Include="UnityEditor.StandardEvents">

@@ -6,10 +6,10 @@ public class FollowCamera : MonoBehaviour {
 
     public GameObject player;
 
-    Vector3 disWithPlayer;
+    Vector3 disWithPlayer = new Vector3(0,2,5);
     private void Awake()
     {
-        disWithPlayer = player.transform.position - transform.position;
+        
     }
 
     // Use this for initialization
@@ -24,7 +24,7 @@ public class FollowCamera : MonoBehaviour {
 
     private void LateUpdate()
     {
-        transform.position = player.transform.position - disWithPlayer;
+        transform.position = player.transform.position + disWithPlayer;
         transform.LookAt(player.transform.position);
     }
 }
