@@ -118,6 +118,11 @@ public class PlayerEntity : GravityEntity {
             ani.SetInteger("AttackMode", 1);
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ani.SetInteger("AttackMode", 3);
+        }
+
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
     

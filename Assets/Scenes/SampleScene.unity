@@ -144,12 +144,12 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2.5
-  m_Radius: 1
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 1.1, z: -0.15}
 --- !u!114 &12470925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
     e10: 0
     e11: 1
     e12: 0
-    e13: -180.55
+    e13: -180.54999
     e20: 0
     e21: 0
     e22: 1
@@ -503,7 +503,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 12470923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3136945, y: 28.645004, z: -56.4}
+  m_LocalPosition: {x: -2.3136945, y: 19.32, z: -36.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 98157166}
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 310133721}
-  moveSpeed: 20
+  moveSpeed: 2
   hpBarPool: {fileID: 2024875501}
   testHpBar: {fileID: 1597919069}
 --- !u!95 &12470929
@@ -1501,7 +1501,7 @@ MonoBehaviour:
   sword: {fileID: 876948084}
   hand: {fileID: 195035199}
   hips: {fileID: 21616611}
-  moveSpeed: 1
+  moveSpeed: 5
   rotateSpeed: 1
   energyBar: {fileID: 1666109270}
 --- !u!114 &310133723
@@ -1522,7 +1522,7 @@ MonoBehaviour:
   voxelFileObject: {fileID: 100000, guid: d7ae263bf47d9e64eade6ee06940aa66, type: 3}
   voxelFileSubIndex: 0
   fileType: 0
-  fileRefreshLastTimeTicks: 636651150514466842
+  fileRefreshLastTimeTicks: 636651364064508673
   dataVersion: 113
   legacyVoxImport: 0
   importMode: 1
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   atlasTexture: {fileID: 28717142227248102, guid: 2ec2598eb439f0043b35d225b905f58b,
     type: 2}
   rigAnimationType: 1
-  avatar: {fileID: 90403880289686750, guid: 2ec2598eb439f0043b35d225b905f58b, type: 2}
+  avatar: {fileID: 90176717633727574, guid: 2ec2598eb439f0043b35d225b905f58b, type: 2}
   updateAnimatorAvatar: 1
   humanDescription:
     firstAutomapDone: 0
@@ -1795,7 +1795,7 @@ MonoBehaviour:
     e32: 0
     e33: 1
   editMode: 0
-  editLastMode: 2
+  editLastMode: 3
   edit_voxelMode: 0
   edit_voxelWeightMode: 0
   edit_vertexWeightMode: 0
@@ -1841,7 +1841,7 @@ Animator:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 310133721}
   m_Enabled: 1
-  m_Avatar: {fileID: 90403880289686750, guid: 2ec2598eb439f0043b35d225b905f58b, type: 2}
+  m_Avatar: {fileID: 90176717633727574, guid: 2ec2598eb439f0043b35d225b905f58b, type: 2}
   m_Controller: {fileID: 9100000, guid: 19b2e7c506779b247a647a9f97a23a2f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -1941,6 +1941,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -174.65501, z: 0}
+--- !u!1 &334395494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 334395495}
+  - component: {fileID: 334395496}
+  m_Layer: 0
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334395495
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334395494}
+  m_LocalRotation: {x: -0.37992683, y: 0.006046377, z: -0.021636363, w: 0.9247438}
+  m_LocalPosition: {x: 0.004000008, y: 0.08399999, z: -0.083}
+  m_LocalScale: {x: 0.99999976, y: 1.0000004, z: 1.0000005}
+  m_Children: []
+  m_Father: {fileID: 876948086}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -44.620003, y: 2.2240002, z: -3.5930002}
+--- !u!65 &334395496
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 334395494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09654393, y: 0.1890102, z: 1.1593413}
+  m_Center: {x: 0.12131777, y: -0.20532662, z: -0.348911}
 --- !u!1 &371953156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,7 +2586,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.55, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 334395495}
   m_Father: {fileID: 21616612}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

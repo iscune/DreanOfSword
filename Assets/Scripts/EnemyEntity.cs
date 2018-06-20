@@ -49,7 +49,7 @@ public class EnemyEntity : GravityEntity {
         }
         
 
-        if (Vector3.Distance(target.transform.position, this.transform.position) < 1)
+        if (Vector3.Distance(target.transform.position, this.transform.position) < 1.5)
         {
             ani.Play("Attack", 1);
         }
@@ -59,7 +59,7 @@ public class EnemyEntity : GravityEntity {
             setHpBar();
         }
 
-        testHpBar.transform.LookAt(Camera.main.transform);
+        //testHpBar.transform.LookAt(Camera.main.transform);
     }
 
     void OnBeCameInvisible()
