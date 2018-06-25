@@ -16,6 +16,7 @@ public class PlayerEntity : GravityEntity {
     Energy energy;
 
     public GameObject energyBar;
+    public GameObject swordTile;
 
     enum SwordState {
         InHand = 0,
@@ -40,6 +41,8 @@ public class PlayerEntity : GravityEntity {
         base.Start();
 
         ani = GetComponent<Animator>();
+
+        swordTile.SetActive(false);
 
         energy = new Energy(energyBar);
         StartCoroutine(EnergyAutoAdd());
@@ -80,6 +83,24 @@ public class PlayerEntity : GravityEntity {
         base.FixedUpdate();
     }
 
+    void Change2AttackMode(int mode)
+    {
+
+        StopCoroutine("effectEnd");
+        swordTile.SetActive(true);
+        ani.SetInteger("AttackMode", mode);
+    }
+
+
+    void Change2AttackMode(int mode,float reverse)
+    {
+
+        Change2AttackMode(mode);
+
+        ani.SetFloat("reverse", reverse);
+    }
+
+    public AnimatorStateInfo stateInfo;
     // Update is called once per frameh
     void Update() {
         if (!cc.isGrounded)
@@ -87,19 +108,18 @@ public class PlayerEntity : GravityEntity {
             return;
         }
 
-        AnimatorStateInfo stateInfo = ani.GetCurrentAnimatorStateInfo(1);
+        stateInfo = ani.GetCurrentAnimatorStateInfo(1);
         
         if (Input.GetMouseButtonDown(0) && stateInfo.IsName("handRun"))
         {
             if (swordState == SwordState.InBody)
             {
-                ani.SetInteger("AttackMode", 2);
-                ani.SetFloat("reverse", 1);
+                Change2AttackMode(2, 1);
             }
             else
             {
                 energy.Value = -10;
-                ani.SetBool("isAttack", true);
+                Change2AttackMode(4);
             }
         }
 
@@ -107,7 +127,6 @@ public class PlayerEntity : GravityEntity {
         {
            if(swordState == SwordState.InHand && stateInfo.IsName("handRun"))
            {
-
                 ani.Play("PickSword", 1,1);
                 ani.SetFloat("reverse", -1);
            }   
@@ -115,12 +134,12 @@ public class PlayerEntity : GravityEntity {
 
         if (Input.GetKeyDown(KeyCode.Space) && swordState == SwordState.InHand)
         {
-            ani.SetInteger("AttackMode", 1);
+            Change2AttackMode(1);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            ani.SetInteger("AttackMode", 3);
+            Change2AttackMode(3);
         }
 
         float h = Input.GetAxis("Horizontal");
@@ -181,7 +200,14 @@ public class PlayerEntity : GravityEntity {
 
     public void EndAttack()
     {
-        ani.SetBool("isAttack", false);
         ani.SetInteger("AttackMode", 0);
+        StartCoroutine("effectEnd");
+    }
+
+    IEnumerator effectEnd()
+    {
+        yield return new WaitForSeconds((float)0.5);
+
+        swordTile.SetActive(false);
     }
 }
