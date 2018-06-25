@@ -50,3 +50,30 @@ void transform(inout appdata_full v)
 
 	v.normal = TransformByQuaternion(v.normal, quaternion);
 }
+
+void oppositeTransform(inout appdata_full v)
+{
+	float3 center = v.vertex + v.tangent.xyz;
+	float velocity = v.tangent.w;
+
+	float3 move = center - _ExplosionCenter;
+	move.x -= sin(velocity);
+	move.y -= atan(velocity);
+	move.z -= cos(velocity);
+	float3 normal = normalize(move);
+
+	float3 dir = v.vertex.xyz - center;
+	float4 quaternion;
+	{
+		float3 axis = cross(normal, float3(0.0001f, -sign(normal.y), 0.0001f));
+		axis = normalize(axis);
+		quaternion = QuaternionFromAxisAngle(axis, velocity * _ExplosionRotate * _ExplosionRate);
+		dir = TransformByQuaternion(dir, quaternion);
+	}
+
+	float power = HalfPI * (1.0f - _ExplosionRate);
+	v.vertex.xyz = center + dir * sin(power);
+	v.vertex.xyz += normal * velocity * cos(power);
+
+	v.normal = TransformByQuaternion(v.normal, quaternion);
+}

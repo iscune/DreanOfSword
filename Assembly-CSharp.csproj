@@ -60,8 +60,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\EdgeDetectNormalsAndDepth.cs" />
-    <Compile Include="Assets\Scripts\EnemyEntity.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
+    <Compile Include="Assets\Scripts\Entity\EnemyEntity.cs" />
+    <Compile Include="Assets\Scripts\Entity\GravityEntity.cs" />
+    <Compile Include="Assets\Scripts\Entity\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\EventListner\Notification.cs" />
     <Compile Include="Assets\Scripts\EventListner\Notifier.cs" />
     <Compile Include="Assets\Scripts\EventListner\NotifierManager.cs" />
@@ -69,9 +71,7 @@
     <Compile Include="Assets\Scripts\Factory.cs" />
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
-    <Compile Include="Assets\Scripts\GravityEntity.cs" />
     <Compile Include="Assets\Scripts\HpBarFactory.cs" />
-    <Compile Include="Assets\Scripts\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\PostEffectsBase.cs" />
     <Compile Include="Assets\Scripts\PublicConst\PublicEnum.cs" />
     <Compile Include="Assets\VoxelImporter\Examples\Assets\CreateCubes.cs" />

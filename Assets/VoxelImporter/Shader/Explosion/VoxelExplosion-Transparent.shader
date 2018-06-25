@@ -68,7 +68,7 @@
 
 			v2f vert(appdata_full v)
 			{
-				transform(v);
+				oppositeTransform(v);
 
 				v2f o;
 				TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
