@@ -49,7 +49,7 @@ public class EnemyEntity : GravityEntity {
         }
         
 
-        if (Vector3.Distance(target.transform.position, this.transform.position) < 1.5)
+        if (Vector3.Distance(target.transform.position, this.transform.position) < 1.8)
         {
             ani.Play("Attack", 1);
         }

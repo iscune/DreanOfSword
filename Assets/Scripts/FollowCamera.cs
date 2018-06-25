@@ -6,7 +6,7 @@ public class FollowCamera : MonoBehaviour {
 
     public GameObject player;
 
-    Vector3 disWithPlayer = new Vector3(0,5,3);
+    Vector3 disWithPlayer = new Vector3(0,10,5);
     private void Awake()
     {
         

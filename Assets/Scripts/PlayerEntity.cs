@@ -126,7 +126,7 @@ public class PlayerEntity : GravityEntity {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
     
-        if (Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f)
+        if ((Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f) && !stateInfo.IsName("LongDistanceAttack"))
         {
 
             Vector3 targetpos = new Vector3(-h, 0, -v);
