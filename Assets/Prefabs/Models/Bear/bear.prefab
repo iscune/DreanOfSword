@@ -15085,12 +15085,12 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
---- !u!90 &90176717633727574
+--- !u!90 &90203525535328364
 Avatar:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: avatar
+  m_Name: avatar0
   m_AvatarSize: 1592
   m_Avatar:
     serializedVersion: 3
@@ -15500,6 +15500,7 @@ MonoBehaviour:
   moveSpeed: 15
   rotateSpeed: 20
   energyBar: {fileID: 0}
+  swordTile: {fileID: 0}
 --- !u!114 &114345913576622482
 MonoBehaviour:
   m_ObjectHideFlags: 1
