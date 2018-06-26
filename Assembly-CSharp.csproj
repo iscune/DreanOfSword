@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PublicConst\PublicEnum.cs" />
     <Compile Include="Assets\Scripts\EdgeDetectNormalsAndDepth.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
     <Compile Include="Assets\Scripts\Entity\EnemyEntity.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\HpBarFactory.cs" />
     <Compile Include="Assets\Scripts\PostEffectsBase.cs" />
-    <Compile Include="Assets\Scripts\PublicConst\PublicEnum.cs" />
     <Compile Include="Assets\VoxelImporter\Examples\Assets\CreateCubes.cs" />
     <Compile Include="Assets\VoxelImporter\Examples\Assets\VoxelExplosionUI.cs" />
     <Compile Include="Assets\VoxelImporter\Examples\Scripts\CameraController.cs" />

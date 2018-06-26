@@ -24,6 +24,32 @@ public class EnemyEntity : GravityEntity {
     // Use this for initialization
     protected override void Start () {
         base.Start();
+
+        var skinnedVoxelExplosion = this.GetComponent<VoxelSkinnedAnimationObjectExplosion>();
+        if (skinnedVoxelExplosion != null)
+        {
+            if (!skinnedVoxelExplosion.enabled)
+            {
+                var collider = this;
+                collider.enabled = false;
+
+                skinnedVoxelExplosion.SetExplosionCenter(skinnedVoxelExplosion.transform.worldToLocalMatrix.MultiplyPoint3x4(transform.localPosition));
+
+                var animator = collider.GetComponent<Animator>();
+                var animatorEnabled = false;
+                if (animator != null)
+                {
+                    animatorEnabled = animator.enabled;
+                    animator.enabled = false;
+                }
+                skinnedVoxelExplosion.ExplosionReversePlay(lifeTime, () =>
+                {
+                    if (animator != null) animator.enabled = animatorEnabled;
+                    collider.enabled = true;
+                });
+            }
+        }
+
         ani = GetComponent<Animator>();
 
         target = GameObject.FindGameObjectWithTag("Player");
@@ -55,7 +81,7 @@ public class EnemyEntity : GravityEntity {
         }
         
 
-        if (Vector3.Distance(target.transform.position, this.transform.position) < 1.8)
+        if (Vector3.Distance(target.transform.position, this.transform.position) < 2)
         {
             ani.Play("Attack", 1);
         }
@@ -83,7 +109,7 @@ public class EnemyEntity : GravityEntity {
         //setHpBar();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void CheckAttackTarget(ControllerColliderHit hit)
     {
         if (hit.transform.tag == "Sword")
         {
@@ -122,5 +148,61 @@ public class EnemyEntity : GravityEntity {
                 }
             }
         }
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        CheckAttackTarget(hit);
+    }
+
+    void CheckAttackTarget(Collider other)
+    {
+        if (other.transform.tag == "Sword")
+        {
+            var playerEntity = other.gameObject.GetComponentInParent<PlayerEntity>();
+
+            if (playerEntity != null)
+            {
+                if (playerEntity.stateInfo.IsName("handRun"))
+                {
+                    return;
+                }
+            }
+            testHpBar.gameObject.SetActive(false);
+            var skinnedVoxelExplosion = this.GetComponent<VoxelSkinnedAnimationObjectExplosion>();
+            if (skinnedVoxelExplosion != null)
+            {
+                if (!skinnedVoxelExplosion.enabled)
+                {
+                    var collider = this;
+                    collider.enabled = false;
+
+                    skinnedVoxelExplosion.SetExplosionCenter(skinnedVoxelExplosion.transform.worldToLocalMatrix.MultiplyPoint3x4(transform.position));
+
+                    var animator = collider.GetComponent<Animator>();
+                    var animatorEnabled = false;
+                    if (animator != null)
+                    {
+                        animatorEnabled = animator.enabled;
+                        animator.enabled = false;
+                    }
+                    skinnedVoxelExplosion.BakeExplosionPlay(lifeTime, () =>
+                    {
+                        Destroy(skinnedVoxelExplosion.gameObject);
+                        NotifierManager.SendNotification(PublicEnum.NotifierSendType.EnemyDie);
+                    });
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        CheckAttackTarget(other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        CheckAttackTarget(other);
     }
 }
